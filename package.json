@@ -6,7 +6,7 @@
     "main": "pathToMain",
     "type": "module",
     "scripts": {
-        "start": "node update.js",
+        "start": "node update_readme.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
