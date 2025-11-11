@@ -10,7 +10,6 @@ It was written by modules.
 
 ```bash
 .
-├── main.tf
 ├── modules
 │   ├── compute
 │   │   ├── compute-engine
@@ -31,12 +30,12 @@ It was written by modules.
 │   └── security
 │       ├── iam
 │       └── security-group
-├── stacks
-│   ├── 00-providers.tf
-│   ├── 01-security.tf
-│   ├── 02-network.tf
-│   ├── 03-compute.tf
-│   ├── 04-data.tf
-│   └── 05-kubernetes.tf
-└── variables.tf
+└── stacks
+    ├── 00-providers.tf
+    ├── 01-security.tf
+    ├── 02-network.tf
+    ├── 03-compute.tf
+    ├── 04-data.tf
+    ├── 05-kubernetes.tf
+    └── variables.tf
 ```
