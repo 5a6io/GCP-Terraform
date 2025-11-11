@@ -1,0 +1,36 @@
+import { writeFileSync } from 'node:fs';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+let text = `# 🍀GCP Terraform
+
+This code is refectoring based on 'Side Project'. 
+
+Side Project: https://github.com/5a6io/Side-Project.git
+
+It was written by modules.
+
+## 🗂️Directory Structure
+
+`;
+
+const tree = process.env.TREE_OUTPUT;
+
+if (!tree) {
+    console.error('TREE_OUTPUT 환경변수가 설정되지 않음.');
+    exit(1);
+}
+
+(async () => {
+    try {
+
+        text += `\`\`\`bash\n${tree}\n\`\`\`\n`
+
+        writeFileSync('README.md', text);
+        console.log(`${text}`);
+        console.log('README.md updated');
+    } catch(error){
+        console.error("다음과 같은 오류 발생:", error);
+    }
+})();

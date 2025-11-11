@@ -1,0 +1,40 @@
+name: Modify REAEME.md
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependency
+        run: npm install dotenv
+        
+      - name: Install tree
+        run: sudo apt-get update && sudo apt-get install tree -y
+      
+      - name: Update README.md
+        run: |
+          export TREE_OUTPUT="$(tree -L 3 --noreport -I '.git*|package*|README.md|update.js|node_modules' )"
+          node update.js
+      
+      - name: Check if there are any changes
+        id: verify_diff
+        run: |
+          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+      
+      - name: Commit README.md
+        if: steps.verify_diff.outputs.changed == 'true'
+        run: |
+          git add .
+          git config --local user.email "${{ secrets.EMAIL }}"
+          git config --local user.name "5a6io"
+          git commit -m "Update README.md"
+          git push -u origin main
