@@ -12,7 +12,6 @@ It was written by modules.
 .
 ├── modules
 │   ├── compute
-│   │   ├── compute-engine
 │   │   └── gke
 │   ├── data
 │   │   └── sql
